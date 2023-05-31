@@ -96,3 +96,7 @@ curl -H "Authorization: Basic XXXX=" https://cancer.sanger.ac.uk/cosmic/file_dow
 sudo gzip -d **.gz \
 sudo /home/bioinfotools/annovar/prepare_annovar_user.pl -dbtype cosmic CosmicMutantExport.tsv -vcf CosmicCodingMuts.normal.vcf > hg19_cosmic97_coding.txt \
 sudo /home/bioinfotools/annovar/prepare_annovar_user.pl -dbtype cosmic CosmicNCV.tsv -vcf CosmicNonCodingVariants.normal.vcf > hg19_cosmic97_noncoding.txt \
+
+### Download the content of the folder "From ANNOVAR to Excel"
+### Check the full_pipeline.sh folder's locations, replace acoordenly, and execute the unified script. There is also a separated script to run in parts.
+full_pipeline.sh
