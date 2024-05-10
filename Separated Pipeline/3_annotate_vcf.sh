@@ -1,10 +1,10 @@
 #!/bin/bash
 
-ANNOVAR_SCRIPT="/home/bioinfotools/annovar/convert2annovar.pl -format vcf4 -includeinfo"
-ANNOVAR_TABLE_SCRIPT="/home/bioinfotools/annovar/table_annovar.pl"
-ANNOVAR_DB="/home/bioinfotools/annovar/humandb/"
-MAMAVCF_TO_EXCEL_SCRIPT="/home/bioinfotools/annovar/mamavcf_to_excel.R"
-ONCOVCF_TO_EXCEL_SCRIPT="/home/bioinfotools/annovar/oncovcf_to_excel.R"
+ANNOVAR_SCRIPT="/mnt/d/1-bioinfotools/annovar/convert2annovar.pl -format vcf4 -includeinfo"
+ANNOVAR_TABLE_SCRIPT="/mnt/d/1-bioinfotools/annovar/table_annovar.pl"
+ANNOVAR_DB="/mnt/d/1-bioinfotools/annovar/humandb/"
+MAMAVCF_TO_EXCEL_SCRIPT="/mnt/d/1-bioinfotools/annovar/mamavcf_to_excel.R"
+ONCOVCF_TO_EXCEL_SCRIPT="/mnt/d/1-bioinfotools/annovar/oncovcf_to_excel.R"
 
 # Prompt for the NGS kit
 read -p "Enter the NGS kit (QiaSeqMama, QiaSeqOnco, or IlluminaFocus): " ngs_kit

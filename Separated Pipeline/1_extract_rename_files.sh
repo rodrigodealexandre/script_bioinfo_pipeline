@@ -4,7 +4,7 @@
 read -p "Enter the folder name (XXX): " folder_name
 
 # Set the folder path
-folder_path="/mnt/d/AlignData/$folder_name"
+folder_path="/mnt/d/5-AlignData/$folder_name"
 
 # Check if the folder exists
 if [ ! -d "$folder_path" ]; then

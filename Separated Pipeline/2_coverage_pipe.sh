@@ -9,17 +9,17 @@ read -p "Enter the NGS kit (QiaSeqMama, QiaSeqOnco, or IlluminaFocus): " ngs_kit
 # Set the appropriate BED files based on the NGS kit
 case $ngs_kit in
   QiaSeqMama)
-    exon_bed="/home/bioinfotools/genes_coverage/MAMA_V1.0_splice10.bed"
-    cnv_bed="/home/bioinfotools/genes_coverage/MAMA V1.0 - CNV.bed"
+    exon_bed="/mnt/d/1-bioinfotools/genes_coverage/MAMA_V1.0_splice10.bed"
+    cnv_bed="/mnt/d/1-bioinfotools/genes_coverage/MAMA V1.0 - CNV.bed"
     ;;
   QiaSeqOnco)
-    cnv_bed="/home/bioinfotools/genes_coverage/ONCO_V1.0_exons.bed"
-    snv_bed="/home/bioinfotools/genes_coverage/ONCO_V1.0_codons.bed"
+    cnv_bed="/mnt/d/1-bioinfotools/genes_coverage/ONCO_V1.0_exons.bed"
+    snv_bed="/mnt/d/1-bioinfotools/genes_coverage/ONCO_V1.0_codons.bed"
     ;;
   IlluminaFocus)
-    region_bed="/home/bioinfotools/genes_coverage/FOCUS_snv_V1.0.bed"
-    cnv_bed="/home/bioinfotools/genes_coverage/FOCUS_cnv_V1.0.bed"
-    fusion_bed="/home/bioinfotools/genes_coverage/FOCUS_RNA_V1.0.bed"
+    region_bed="/mnt/d/1-bioinfotools/genes_coverage/FOCUS_snv_V1.0.bed"
+    cnv_bed="/mnt/d/1-bioinfotools/genes_coverage/FOCUS_cnv_V1.0.bed"
+    fusion_bed="/mnt/d/1-bioinfotools/genes_coverage/FOCUS_RNA_V1.0.bed"
     ;;
   *)
     echo "Invalid NGS kit. Please choose one of the provided options."
@@ -60,14 +60,14 @@ if [[ $ngs_kit == "QiaSeqMama" || $ngs_kit == "QiaSeqOnco" ]]; then
         # Run the coverage command for QiaSeqMama
         bedtools coverage -hist -abam "$bam_file" -b "$exon_bed" > "${bam_file%.bam}_exon.hist.all.txt"
         bedtools coverage -hist -abam "$bam_file" -b "$cnv_bed" > "${bam_file%.bam}_CNV.hist.all.txt"
-        python3.9 /home/bioinfotools/genes_coverage/calc_coverage_20x.py --cov "${bam_file%.bam}_exon.hist.all.txt" --output .
-        python3.9 /home/bioinfotools/genes_coverage/calc_coverage_20x.py --cov "${bam_file%.bam}_CNV.hist.all.txt" --output .
+        python3.9 /mnt/d/1-bioinfotools/genes_coverage/calc_coverage_20x.py --cov "${bam_file%.bam}_exon.hist.all.txt" --output .
+        python3.9 /mnt/d/1-bioinfotools/genes_coverage/calc_coverage_20x.py --cov "${bam_file%.bam}_CNV.hist.all.txt" --output .
       elif [[ $ngs_kit == "QiaSeqOnco" ]]; then
         # Run the coverage command for QiaSeqOnco
         bedtools coverage -hist -abam "$bam_file" -b "$snv_bed" > "${bam_file%.bam}_SNV.hist.all.txt"
         bedtools coverage -hist -abam "$bam_file" -b "$cnv_bed" > "${bam_file%.bam}_CNV.hist.all.txt"
-        python3.9 /home/bioinfotools/genes_coverage/calc_coverage_500x.py --cov "${bam_file%.bam}_CNV.hist.all.txt" --output .
-        python3.9 /home/bioinfotools/genes_coverage/calc_coverage_500x.py --cov "${bam_file%.bam}_SNV.hist.all.txt" --output .
+        python3.9 /mnt/d/1-bioinfotools/genes_coverage/calc_coverage_500x.py --cov "${bam_file%.bam}_CNV.hist.all.txt" --output .
+        python3.9 /mnt/d/1-bioinfotools/genes_coverage/calc_coverage_500x.py --cov "${bam_file%.bam}_SNV.hist.all.txt" --output .
       fi
     fi
   done
@@ -85,8 +85,8 @@ elif [[ $ngs_kit == "IlluminaFocus" ]]; then
       # Run the coverage command for tumor samples
       bedtools coverage -hist -abam "$bam_file" -b "$region_bed" > "${bam_file%.bam}_regions.hist.all.txt"
       bedtools coverage -hist -abam "$bam_file" -b "$cnv_bed" > "${bam_file%.bam}_CNV.hist.all.txt"
-      python3.9 /home/bioinfotools/genes_coverage/calc_coverage_500x.py --cov "${bam_file%.bam}_regions.hist.all.txt" --output .
-      python3.9 /home/bioinfotools/genes_coverage/calc_coverage_500x.py --cov "${bam_file%.bam}_CNV.hist.all.txt" --output .
+      python3.9 /mnt/d/1-bioinfotools/genes_coverage/calc_coverage_500x.py --cov "${bam_file%.bam}_regions.hist.all.txt" --output .
+      python3.9 /mnt/d/1-bioinfotools/genes_coverage/calc_coverage_500x.py --cov "${bam_file%.bam}_CNV.hist.all.txt" --output .
     fi
   done
 
@@ -101,7 +101,7 @@ elif [[ $ngs_kit == "IlluminaFocus" ]]; then
       
       # Run the coverage command for non-tumor samples
       bedtools coverage -hist -abam "$bam_file" -b "$fusion_bed" > "${bam_file%.bam}_fusion.hist.all.txt"
-      python3.9 /home/bioinfotools/genes_coverage/calc_coverage_500x.py --cov "${bam_file%.bam}_fusion.hist.all.txt" --output .
+      python3.9 /mnt/d/1-bioinfotools/genes_coverage/calc_coverage_500x.py --cov "${bam_file%.bam}_fusion.hist.all.txt" --output .
     fi
   done
 fi
